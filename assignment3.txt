@@ -6,6 +6,6 @@ TenantApartment: tenantID*, ApartmentID*
 Question :
 get list of tenants who are renting more than one apartment
 ans: 
-SELECT tenants.TenantName, COUNT(tenantapartments.TenantId)AS ApartmentCount
+SELECT MAX(tenants.TenantName), COUNT(tenantapartments.TenantId)AS ApartmentCount
 FROM tenants LEFT OUTER JOIN tenantapartments ON (tenants.TenantId=tenantapartments.TenantId)
 GROUP BY tenantapartments.TenantId HAVING ApartmentCount > 1
