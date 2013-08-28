@@ -1,0 +1,17 @@
+Assignment 1:
+implement a query to get a list of all students and how many courses each student is enrolled in
+
+ANS :
+
+SELECT MAX(students.StudentName),COUNT(courses_has_students.Students_StudentId) FROM students LEFT OUTER JOIN courses_has_students ON (students.StudentId=courses_has_students.Students_StudentId) GROUP BY courses_has_students.Students_StudentId;
+
+
+Assignment 2:
+implement a query to get a list of all teachers and how many students they teach. Sort the list in decending order of the number of students a teacher teaches.
+
+ans: 
+SELECT MAX(teachers.TeacherName) AS listOfTeachers, COUNT(courses_has_students.Courses_courseId) AS studentCourseCount
+FROM courses_has_students LEFT OUTER JOIN courses 
+ON courses_has_students.Courses_courseId=courses.courseId
+RIGHT OUTER JOIN teachers ON teachers.TeacherId=courses.Teachers_TeacherId
+GROUP BY teachers.TeacherId ORDER BY studentCourseCount DESC
